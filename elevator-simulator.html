@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elevator Simulator</title>
+    <style>
+        canvas{
+            padding: 0;
+            background-color: lightyellow;
+            margin: auto;
+            display: block;
+
+        }
+
+        #controls{
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        #start{
+            width: 100px;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="my-canvas" width="1000" height="800">
+
+</canvas>
+<div id="controls">
+    <button id="start">Start</button>
+</div>
+
+
+<script>
+    (function(){
+
+        initCanvas();
+
+        function initCanvas(){
+            let canvas = document.getElementById('my-canvas');
+            let ctx = canvas.getContext('2d');
+            if(ctx != null){
+
+                let cw = ctx.canvas.clientWidth;
+                let ch = ctx.canvas.clientHeight;
+
+                ctx.fillStyle = 'lightgray';
+                ctx.fillRect(50,600, 100,150);
+
+                ctx.fillStyle = 'lightblue';
+                ctx.fillRect(250,600, 100,150);
+
+                ctx.fillStyle = 'lightgreen';
+                ctx.fillRect(450,600, 100,150);
+                
+            }
+        }
+
+    })();
+</script>
+
+</body>
+</html>
