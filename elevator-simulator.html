@@ -39,7 +39,18 @@
 <script>
     (function(){
 
+        let startBtn = document.getElementById('start');
+
         initCanvas();
+
+        startBtn.addEventListener('click', () => {
+            console.log('start');
+            window.requestAnimationFrame(moveElevator)
+        });
+
+        function moveElevator(){
+
+        }
 
         function initCanvas(){
             let canvas = document.getElementById('my-canvas');
