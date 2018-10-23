@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Canvas</title>
+    <style>
+        #my-canvas{
+            border: dotted 3px grey;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="my-canvas" width="600" height="300">
+    Fallback content
+</canvas>
+
+<script>
+
+    drawOnCanvas();
+
+    function getRadians(degrees){
+        return (Math.PI / 180) * degrees;
+    }
+
+    function drawOnCanvas(){
+        let canvas = document.getElementById('my-canvas');
+        let ctx = canvas.getContext('2d');
+        if(ctx != null){
+
+            // Corner arc
+            ctx.beginPath();
+            ctx.arc(0, 0, 100, getRadians(0), getRadians(90));
+            ctx.stroke();
+
+            // Full circle
+            ctx.beginPath();
+            ctx.arc(canvas.width/2, canvas.height/2, 100, 0, 2 * Math.PI, false);
+            ctx.stroke();
+
+            // Paths
+            ctx.strokeStyle = "cyan";
+            ctx.fillStyle = "black";
+            ctx.lineWidth = 5;
+
+            ctx.beginPath();
+            ctx.moveTo(0, 175);
+            ctx.lineTo(50, 25);
+            ctx.lineTo(125, 50);
+            ctx.lineTo(175, 175);
+            ctx.stroke();
+            // ctx.closePath();
+
+        }
+    }
+</script>
+</body>
+</html>
