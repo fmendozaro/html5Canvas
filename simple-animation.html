@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animations</title>
+    <style>
+        #my-canvas{
+            border: dotted 3px grey;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="my-canvas" width="600" height="600">
+    Fallback content
+</canvas>
+
+<script>
+    "use strict";
+
+    let rectY = 200, rectW=40;
+    let rectX = -rectW;
+    let canvas = null, ctx = null, cW = null, cH = null;
+
+    init();
+
+    function init(){
+        canvas = document.getElementById('my-canvas');
+        ctx = canvas.getContext('2d');
+        cW = ctx.canvas.width;
+        cH = ctx.canvas.height;
+
+        blank();
+
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect(rectX, rectY, rectW, rectW);
+        setInterval(animate, 30);
+    }
+
+    function blank(){
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,0, cW, cH);
+    }
+
+    function animate(){
+        if(rectX < ctx.canvas.width){
+            blank();
+            rectX += 5;
+            ctx.fillStyle = 'yellow';
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 3;
+            ctx.fillRect(rectX, rectY, rectW, rectW);
+            ctx.strokeRect(rectX, rectY, rectW, rectW);
+        }else{
+            rectX = -rectW;
+        }
+    }
+</script>
+</body>
+</html>
