@@ -39,17 +39,27 @@
             ctx.stroke();
 
             // Paths
-            ctx.strokeStyle = "cyan";
-            ctx.fillStyle = "black";
+            ctx.strokeStyle = "blue";
+            ctx.fillStyle = "orange";
             ctx.lineWidth = 5;
 
+            // Print an F
             ctx.beginPath();
-            ctx.moveTo(0, 175);
-            ctx.lineTo(50, 25);
-            ctx.lineTo(125, 50);
-            ctx.lineTo(175, 175);
+            ctx.moveTo(50, canvas.height-70);
+            ctx.lineTo(50, 100);
+            ctx.lineTo(150, 100);
+            ctx.lineTo(150, 120);
+            ctx.lineTo(80, 120);
+            ctx.lineTo(80, 140);
+            ctx.lineTo(120, 140);
+            ctx.lineTo(120, 140);
+            ctx.lineTo(120, 160);
+            ctx.lineTo(80, 160);
+            ctx.lineTo(80, canvas.height-70);
+            ctx.lineTo(50, canvas.height-70);
             ctx.stroke();
-            // ctx.closePath();
+            ctx.fill();
+            ctx.closePath();
 
         }
     }
