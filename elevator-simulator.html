@@ -40,33 +40,58 @@
     (function(){
 
         let startBtn = document.getElementById('start');
+        let rectW = 100, rectH = 150;
+        let rectY = 600, rectX = 60;
+        let canvas = null, ctx = null, cW = null, cH = null;
 
         initCanvas();
 
         startBtn.addEventListener('click', () => {
-            console.log('start');
-            window.requestAnimationFrame(moveElevator)
+            setInterval(moveElevator, 10);
         });
 
-        function moveElevator(){
+        function blank(){
+            ctx.fillStyle = "#8e9cc5";
+            ctx.fillRect(0,0, cW, cH);
+        }
 
+        function moveElevator(el){
+            //ctx.fillRect(50,600, 100,150);
+            console.log('rectY', rectY);
+            console.log('cH', cH);
+            if(rectY > 0){
+                blank();
+                rectY -= 5;
+                ctx.fillStyle = 'lightgray';
+                ctx.strokeStyle = 'black';
+                ctx.fillRect(rectX, rectY, rectW, rectW);
+                // ctx.strokeRect(rectX, rectY, rectW, rectW);
+            }else{
+                rectY = cH;
+            }
         }
 
         function initCanvas(){
-            let canvas = document.getElementById('my-canvas');
-            let ctx = canvas.getContext('2d');
+            canvas = document.getElementById('my-canvas');
+            ctx = canvas.getContext('2d');
+            cW = ctx.canvas.width;
+            cH = ctx.canvas.height;
+
             if(ctx != null){
 
-                let cw = ctx.canvas.clientWidth;
-                let ch = ctx.canvas.clientHeight;
+                blank();
 
                 ctx.fillStyle = 'lightgray';
-                ctx.fillRect(50,600, 100,150);
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 5;
+                ctx.fillRect(rectX,rectY, rectW,rectH);
 
                 ctx.fillStyle = 'lightblue';
+                ctx.strokeStyle = 'black';
                 ctx.fillRect(250,600, 100,150);
 
                 ctx.fillStyle = 'lightgreen';
+                ctx.strokeStyle = 'black';
                 ctx.fillRect(450,600, 100,150);
                 
             }
