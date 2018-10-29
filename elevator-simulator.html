@@ -37,6 +37,7 @@
 
 
 <script>
+    "use strict";
     (function(){
 
         let startBtn = document.getElementById('start');
@@ -44,10 +45,18 @@
         let rectY = 600, rectX = 60;
         let canvas = null, ctx = null, cW = null, cH = null;
 
+        let elevators = [
+            {w: 100, h: 150, x:60, y:600, color: 'lightgreen'},
+            {w: 100, h: 150, x:250, y:600, color: 'lightgray'},
+            {w: 100, h: 150, x:450, y:600, color: 'lightblue'}
+        ];
+
         initCanvas();
 
         startBtn.addEventListener('click', () => {
-            setInterval(moveElevator, 10);
+            setInterval( () => {
+                moveElevator(0);
+            }, 10);
         });
 
         function blank(){
@@ -55,19 +64,21 @@
             ctx.fillRect(0,0, cW, cH);
         }
 
-        function moveElevator(el){
-            //ctx.fillRect(50,600, 100,150);
-            console.log('rectY', rectY);
-            console.log('cH', cH);
-            if(rectY > 0){
+        function drawElevator(el) {
+            ctx.fillStyle = el.color;
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 5;
+            ctx.fillRect(el.x,el.y, el.w,el.h);
+        }
+
+        function moveElevator(index){
+            let el = elevators[index];
+            if(el.y > 0){
                 blank();
-                rectY -= 5;
-                ctx.fillStyle = 'lightgray';
-                ctx.strokeStyle = 'black';
-                ctx.fillRect(rectX, rectY, rectW, rectW);
-                // ctx.strokeRect(rectX, rectY, rectW, rectW);
+                el.y -= 5;
+                drawElevator(el);
             }else{
-                rectY = cH;
+                el.y = cH;
             }
         }
 
@@ -81,18 +92,9 @@
 
                 blank();
 
-                ctx.fillStyle = 'lightgray';
-                ctx.strokeStyle = 'black';
-                ctx.lineWidth = 5;
-                ctx.fillRect(rectX,rectY, rectW,rectH);
-
-                ctx.fillStyle = 'lightblue';
-                ctx.strokeStyle = 'black';
-                ctx.fillRect(250,600, 100,150);
-
-                ctx.fillStyle = 'lightgreen';
-                ctx.strokeStyle = 'black';
-                ctx.fillRect(450,600, 100,150);
+                for(let el of elevators){
+                    drawElevator(el);
+                }
                 
             }
         }
